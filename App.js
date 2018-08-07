@@ -28,7 +28,7 @@ export default class App extends React.Component {
         <Text>{this.datas.value}</Text>
         <Text>Open up App.js to start working on your app!</Text>
         <Text>Changes you make will automatically reload.</Text>
-        <Text>Shake your phone to open the developer menu.</Text>
+        <Text>Shake your phone to open the developer derp menu.</Text>
       </View>
     );
   }
