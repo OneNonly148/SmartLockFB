@@ -1,51 +1,44 @@
 import React from 'react';
-import { FlatList, ActivityIndicator, Text, View  } from 'react-native';
+import { AppRegistry, FlatList, StyleSheet, Text, View } from 'react-native';
+import * as firebase from 'firebase';
 
-export default class FetchExample extends React.Component {
+const firebaseConfig = {
+  apiKey: "AIzaSyB7yhJtk0ino5-hzZILOfx4fVEsws4qzPU",
+  authDomain: "smartlock-fc432.firebaseapp.com",
+  databaseURL: "https://smartlock-fc432.firebaseio.com",
+  projectId: "smartlock-fc432",
+  storageBucket: "smartlock-fc432.appspot.com",
+  messagingSenderId: "813331204757"
+}
 
+export default class App extends React.Component {
   constructor(props){
     super(props);
-    this.state ={ isLoading: true}
+    firebase.initializeApp(firebaseConfig);
+    firebase.database().ref('data').set({
+      somedata: 12
+    });
+    firebase.database().ref('data').on('value', (snapshot) => {
+      this.datas = {value: snapshot.val().somedata};
+    });
   }
-
-  componentDidMount(){
-    return fetch('https://facebook.github.io/react-native/movies.json')
-      .then((response) => response.json())
-      .then((responseJson) => {
-
-        this.setState({
-          isLoading: false,
-          dataSource: responseJson.movies,
-        }, function(){
-
-        });
-
-      })
-      .catch((error) =>{
-        console.error(error);
-      });
-  }
-
-
-
-  render(){
-
-    if(this.state.isLoading){
-      return(
-        <View style={{flex: 1, padding: 20}}>
-          <ActivityIndicator/>
-        </View>
-      )
-    }
-
-    return(
-      <View style={{flex: 1, paddingTop:20}}>
-        <FlatList
-          data={this.state.dataSource}
-          renderItem={({item}) => <Text>{item.title}, {item.releaseYear}</Text>}
-          keyExtractor={(item, index) => index}
-        />
+  render() {
+    return (
+      <View style={styles.container}>
+        <Text>{this.datas.value}</Text>
+        <Text>Open up App.js to start working on your app!</Text>
+        <Text>Changes you make will automatically reload.</Text>
+        <Text>Shake your phone to open the developer menu.</Text>
       </View>
     );
   }
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#fff',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+});
