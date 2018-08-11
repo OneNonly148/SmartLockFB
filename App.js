@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React from 'react';
 import { View, StyleSheet, Platform, Image, Text} from 'react-native';
 import { createSwitchNavigator } from 'react-navigation';
@@ -7,16 +8,19 @@ import Login from './Login'
 import Register from './Register'
 import * as firebase from 'firebase';
 import 'firebase/firestore';
+=======
+import React from 'react'
+import { StyleSheet, Platform, Image, Text, View } from 'react-native'
+import { SwitchNavigator } from 'react-navigation'
+>>>>>>> 3fe746fc6addec9d774c01d9cb9d9060bde5734b
 
-const firebaseConfig = {
-  apiKey: "AIzaSyB7yhJtk0ino5-hzZILOfx4fVEsws4qzPU",
-  authDomain: "smartlock-fc432.firebaseapp.com",
-  databaseURL: "https://smartlock-fc432.firebaseio.com",
-  projectId: "smartlock-fc432",
-  storageBucket: "smartlock-fc432.appspot.com",
-  messagingSenderId: "813331204757"
-}
+// import the different screens
+import Loading from './Loading'
+import SignUp from './SignUp'
+import Login from './Login'
+import Main from './Main'
 
+<<<<<<< HEAD
 firebase.initializeApp(firebaseConfig);
 
 const App = createSwitchNavigator(
@@ -32,3 +36,19 @@ const App = createSwitchNavigator(
 )
 
 export default App;
+=======
+// create our app's navigation stack
+const App = SwitchNavigator(
+  {
+    Loading,
+    SignUp,
+    Login,
+    Main
+  },
+  {
+    initialRouteName: 'Loading'
+  }
+)
+
+export default App
+>>>>>>> 3fe746fc6addec9d774c01d9cb9d9060bde5734b
